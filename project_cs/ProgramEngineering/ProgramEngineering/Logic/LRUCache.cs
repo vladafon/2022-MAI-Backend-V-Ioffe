@@ -1,60 +1,61 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace ProgramEngineering.Logic
+﻿using System.Collections.Specialized;
+public class LRUCache
 {
-    public class LRUCache
+    private OrderedDictionary _dict;
+    private readonly int _capacity;
+    public LRUCache(int capacity = 10)
     {
-        private int _capacity;
-        private Dictionary<string, string> _cache;
-        private List<KeyValuePair<string, string>> _logs;
+        _dict = new OrderedDictionary();
+        _capacity = capacity;
+    }
 
-        public LRUCache(int capacity = 10)
+    public string Get(string key)
+    {
+        // checking if the dict containskey
+        if (_dict.Count != 0 && _dict.Contains(key))
         {
-            _capacity = capacity;
-            _cache = new Dictionary<string, string>(_capacity);
-            _logs = new List<KeyValuePair<string, string>>(_capacity);
+            var val = (string)_dict[key];
+
+            //updating the position because it has been used
+            _dict.Remove(key);
+            _dict.Add(key, val);
+
+            return val;
         }
+        return null;
+    }
 
-        public void Set(string key, string value)
+    public void Set(string key, string value)
+    {
+        // If contains Key
+        if (!_dict.Contains(key))
         {
-            if (_cache.Count == _capacity) // когда кеш заполнен, мы удаляем первый (самый старый) объект
+            // checking if capacity exceeded
+            if (_dict.Count < _capacity)
             {
-                var toRemove = _logs[0];
-                _cache.Remove(toRemove.Key); 
-                _logs.Remove(toRemove);
+                _dict.Add(key, value);
             }
-            _logs.Add(new KeyValuePair<string,string>(key, value));
-            _cache[key] = value;
-        }
-
-        public string Get(string key)
-        {
-            if (!_cache.ContainsKey(key))
+            else
             {
-                return null;
+                // Capacity exceeded, delete last and insert at the beginning
+                _dict.RemoveAt(0);
+                _dict.Add(key, value);
             }
-
-            //Опускаем запись вниз списка, делая ее более актуальной
-            var tempCacheCell = _logs.FirstOrDefault(x => x.Key == key);
-            _logs.Remove(tempCacheCell);
-            _logs.Add(tempCacheCell);
-            return _cache[key];
         }
-
-        public void Remove(string key)
+        // Updating the position and value as it has been used
+        else
         {
-            if (!_cache.ContainsKey(key))
-            {
-                return;
-            }
-
-            _cache.Remove(key);
-            _logs.RemoveAll(c => c.Key == key);
+            _dict.Remove(key);
+            _dict.Add(key, value);
         }
+    }
 
-
+    public void Remove(string key)
+    {
+        // checking if the dict containskey
+        if (_dict.Count != 0 && _dict.Contains(key))
+        {
+            _dict.Remove(key);
+        }
     }
 }

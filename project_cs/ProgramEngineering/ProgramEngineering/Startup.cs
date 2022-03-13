@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using ProgramEngineering.Logic;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -34,11 +33,17 @@ namespace ProgramEngineering
             {
                 endpoints.MapGet("/", async context =>
                 {
-                    var cache = new LRUCache();
+                    var cache = new LRUCache(2);
 
                     cache.Set("20", "10");
                     cache.Set("15", "25");
                     cache.Set("25", "30");
+                    cache.Set("20", "11");
+                    cache.Set("15", "26");
+                    cache.Set("25", "31");
+                    cache.Set("20", "17");
+                    cache.Set("15", "70");
+                    cache.Set("25", "4567");
                     var val = cache.Get("15");
                     cache.Remove("15");
                     var val2 = cache.Get("15");
