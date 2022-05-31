@@ -1,0 +1,189 @@
+{
+  "format": 1,
+  "restore": {
+    "C:\\repos\\2022-MAI-Backend-V-Ioffe\\project_cs\\TestProjectForCore\\TestProjectForCore.csproj": {}
+  },
+  "projects": {
+    "C:\\repos\\2022-MAI-Backend-V-Ioffe\\project_cs\\ProgramEngineering\\ProgramEngineering\\ProgramEngineering.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\repos\\2022-MAI-Backend-V-Ioffe\\project_cs\\ProgramEngineering\\ProgramEngineering\\ProgramEngineering.csproj",
+        "projectName": "ProgramEngineering",
+        "projectPath": "C:\\repos\\2022-MAI-Backend-V-Ioffe\\project_cs\\ProgramEngineering\\ProgramEngineering\\ProgramEngineering.csproj",
+        "packagesPath": "C:\\Users\\Администратор.WIN-A4RBFQ3J62N\\.nuget\\packages\\",
+        "outputPath": "C:\\repos\\2022-MAI-Backend-V-Ioffe\\project_cs\\ProgramEngineering\\ProgramEngineering\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\Администратор.WIN-A4RBFQ3J62N\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net5.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {},
+          "https://nexus.eas.russianpost.ru/repository/nuget-group/": {}
+        },
+        "frameworks": {
+          "net5.0": {
+            "targetAlias": "net5.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net5.0": {
+          "targetAlias": "net5.0",
+          "dependencies": {
+            "AWSSDK.Core": {
+              "target": "Package",
+              "version": "[3.7.11.10, )"
+            },
+            "AWSSDK.S3": {
+              "target": "Package",
+              "version": "[3.7.9.10, )"
+            },
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[5.0.17, )"
+            },
+            "Microsoft.VisualStudio.Azure.Containers.Tools.Targets": {
+              "target": "Package",
+              "version": "[1.11.1, )"
+            },
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[13.0.1, )"
+            },
+            "Npgsql.EntityFrameworkCore.PostgreSQL": {
+              "target": "Package",
+              "version": "[5.0.10, )"
+            },
+            "System.Configuration.ConfigurationManager": {
+              "target": "Package",
+              "version": "[6.0.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.402\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\repos\\2022-MAI-Backend-V-Ioffe\\project_cs\\TestProjectForCore\\TestProjectForCore.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\repos\\2022-MAI-Backend-V-Ioffe\\project_cs\\TestProjectForCore\\TestProjectForCore.csproj",
+        "projectName": "TestProjectForCore",
+        "projectPath": "C:\\repos\\2022-MAI-Backend-V-Ioffe\\project_cs\\TestProjectForCore\\TestProjectForCore.csproj",
+        "packagesPath": "C:\\Users\\Администратор.WIN-A4RBFQ3J62N\\.nuget\\packages\\",
+        "outputPath": "C:\\repos\\2022-MAI-Backend-V-Ioffe\\project_cs\\TestProjectForCore\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\Администратор.WIN-A4RBFQ3J62N\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net5.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {},
+          "https://nexus.eas.russianpost.ru/repository/nuget-group/": {}
+        },
+        "frameworks": {
+          "net5.0": {
+            "targetAlias": "net5.0",
+            "projectReferences": {
+              "C:\\repos\\2022-MAI-Backend-V-Ioffe\\project_cs\\ProgramEngineering\\ProgramEngineering\\ProgramEngineering.csproj": {
+                "projectPath": "C:\\repos\\2022-MAI-Backend-V-Ioffe\\project_cs\\ProgramEngineering\\ProgramEngineering\\ProgramEngineering.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net5.0": {
+          "targetAlias": "net5.0",
+          "dependencies": {
+            "AutoFixture": {
+              "target": "Package",
+              "version": "[4.17.0, )"
+            },
+            "Microsoft.NET.Test.Sdk": {
+              "target": "Package",
+              "version": "[16.9.4, )"
+            },
+            "Moq": {
+              "target": "Package",
+              "version": "[4.18.1, )"
+            },
+            "Moq.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[5.0.0.2, )"
+            },
+            "coverlet.collector": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[3.0.2, )"
+            },
+            "xunit": {
+              "target": "Package",
+              "version": "[2.4.1, )"
+            },
+            "xunit.runner.visualstudio": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.4.3, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.402\\RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

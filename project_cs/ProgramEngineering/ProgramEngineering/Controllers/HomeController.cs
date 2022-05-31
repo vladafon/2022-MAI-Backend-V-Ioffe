@@ -8,6 +8,7 @@ using Newtonsoft.Json;
 using ProgramEngineering.Models;
 using ProgramEngineering.DB;
 using Microsoft.EntityFrameworkCore;
+using ProgramEngineering.Logic;
 
 namespace ProgramEngineering.Controllers
 {
@@ -15,26 +16,14 @@ namespace ProgramEngineering.Controllers
     public class HomeController : Controller
     {
         private readonly ApiDbContext _dbContext;
-        public HomeController(ApiDbContext dbContext)
+        private readonly S3Repository _s3Repository;
+
+        public HomeController(ApiDbContext dbContext, S3Repository s3Repository)
         {
             _dbContext = dbContext;
+            _s3Repository = s3Repository;
         }
 
-        [HttpGet("profile/{id}")]
-        [ProducesResponseType(StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
-        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public async Task<IActionResult> GetProfile(long id)
-        {
-            //TODO: Get Info
-
-            return ConvertToJsonResponse(new Profile 
-            { 
-                UserName = $"Vasya_{id}",
-                BoughtBooksCount = 100500,
-                Email = "vasya_pupkin1234@gmail.com",
-            });
-        }
 
         [HttpGet("books")]
         [ProducesResponseType(StatusCodes.Status200OK)]
@@ -148,6 +137,45 @@ namespace ProgramEngineering.Controllers
             _dbContext.Add(bookDb);
             _dbContext.SaveChanges();
             return ConvertToJsonResponse(book);
+        }
+
+        [HttpPut("files/upload")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        public async Task<IActionResult> UploadDocumentToS3(IFormFile file)
+        {
+            if (file is null || file.Length <= 0)
+                return BadRequest();
+
+            using (var stream = file.OpenReadStream())
+            {
+                await _s3Repository.PutFile(stream, file.FileName);
+            }
+            return Ok();
+        }
+
+        [HttpGet("files/get/all")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        public async Task<IActionResult> GetDocumentsFromS3()
+        {
+            var files = await _s3Repository.GetFiles();
+            return ConvertToJsonResponse(files);
+        }
+
+        [HttpGet("files/get")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        public async Task<IActionResult> GetDocumentFromS3(string name)
+        {
+            if (string.IsNullOrEmpty(name))
+                return BadRequest();
+
+            var document = await _s3Repository.GetFile(name);
+
+            return File(document, "application/octet-stream", name);
         }
 
         private IActionResult ConvertToJsonResponse(object obj)
